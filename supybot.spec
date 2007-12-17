@@ -16,7 +16,6 @@ Patch0:		supybot-sre.patch
 License:	BSD
 Group:		Networking/IRC
 URL:	    	http://supybot.sourceforge.net/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	python
 Requires:	python-sqlite
 BuildRequires:  python-devel
