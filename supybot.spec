@@ -1,8 +1,8 @@
 %define name	supybot
 %define tar_name Supybot
-%define version 0.83.2
+%define version 0.83.3
 %define plugins_date 20060723
-%define release %mkrel 6
+%define release %mkrel 1
 
 Summary:	A flexible IRC bot
 Name:		%{name}
@@ -11,8 +11,6 @@ Release:	%{release}
 Source0:	http://prdownloads.sourceforge.net/supybot/%{tar_name}-%{version}.tar.bz2
 Source1:	http://prdownloads.sourceforge.net/supybot/%{tar_name}-data.tar.bz2
 Source2:	http://prdownloads.sourceforge.net/supybot/%{tar_name}-plugins-%{plugins_date}.tar.bz2
-# sre module is deprecated and no more provides _cache var
-Patch0:		supybot-sre.patch
 License:	BSD
 Group:		Networking/IRC
 URL:	    	http://supybot.sourceforge.net/
@@ -83,10 +81,9 @@ Supybot ExternalNotice plugin
 %setup -q -n %{tar_name}-%{version}
 tar -xjf %{SOURCE1}
 tar -xjf %{SOURCE2}
-%patch0 -p0
 
 %build
-perl -pi -e 's!Download it at <http://pysqlite.sf.net/>!Install the python-sqlite package ( urpmi python-sqlite )!' plugins/*.py 
+perl -pi -e 's!Download it at <http://pysqlite.sf.net/>!Install the python-sqlite package ( urpmi python-sqlite )!' plugins/*.py
 CFLAGS="%{optflags}" python setup.py build
 
 # compile plugins
@@ -112,8 +109,8 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc ACKS README  RELNOTES  ChangeLog
-%doc docs/GETTING_STARTED  
-#%doc  examples tools  
+%doc docs/GETTING_STARTED
+#%doc  examples tools
 %{_bindir}/*
 %{py_puresitedir}/%{name}*
 %{_datadir}/%{name}
