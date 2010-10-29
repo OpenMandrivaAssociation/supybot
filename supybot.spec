@@ -2,7 +2,7 @@
 %define tar_name Supybot
 %define version 0.83.4.1
 %define plugins_date 20060723
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:	A flexible IRC bot
 Name:		%{name}
