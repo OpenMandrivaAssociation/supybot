@@ -14,10 +14,9 @@ Source2:	http://prdownloads.sourceforge.net/supybot/%{tar_name}-plugins-%{plugin
 License:	BSD
 Group:		Networking/IRC
 URL:	    	http://supybot.sourceforge.net/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	python
 Requires:	python-sqlite
-BuildRequires:  python-devel
+BuildRequires:  pkgconfig(python)
 BuildArch:      noarch
 
 %description
@@ -88,7 +87,7 @@ perl -pi -e 's!Download it at <http://pysqlite.sf.net/>!Install the python-sqlit
 CFLAGS="%{optflags}" python setup.py build
 
 # compile plugins
-python %{_libdir}/python%{pyver}/compileall.py \
+python %{_libdir}/python%{py_ver}/compileall.py \
   -d %{py_puresitedir}/%{name}/plugins \
   %{tar_name}-plugins-%{plugins_date}
 
@@ -104,11 +103,7 @@ cp -R %{name}-data $RPM_BUILD_ROOT/%{_datadir}/%{name}
 # install plugins
 cp -R %{tar_name}-plugins-%{plugins_date}/* $RPM_BUILD_ROOT/%{py_puresitedir}/%{name}/plugins
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc ACKS README  RELNOTES  ChangeLog
 %doc docs/GETTING_STARTED
 #%doc  examples tools
@@ -122,23 +117,16 @@ rm -rf %{buildroot}
 %exclude %{py_puresitedir}/%{name}/plugins/ExternalNotice
 
 %files Dcc
-%defattr(-,root,root)
 %{py_puresitedir}/%{name}/plugins/Dcc
 
 %files Webserver
-%defattr(-,root,root)
 %{py_puresitedir}/%{name}/plugins/Webserver
 
 %files Sshd
-%defattr(-,root,root)
 %{py_puresitedir}/%{name}/plugins/Sshd
 
 %files Gateway
-%defattr(-,root,root)
 %{py_puresitedir}/%{name}/plugins/Gateway
 
 %files ExternalNotice
-%defattr(-,root,root)
 %{py_puresitedir}/%{name}/plugins/ExternalNotice
-
-
