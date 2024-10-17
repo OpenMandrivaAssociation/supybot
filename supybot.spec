@@ -13,7 +13,7 @@ Source1:	http://prdownloads.sourceforge.net/supybot/%{tar_name}-data.tar.bz2
 Source2:	http://prdownloads.sourceforge.net/supybot/%{tar_name}-plugins-%{plugins_date}.tar.bz2
 License:	BSD
 Group:		Networking/IRC
-URL:	    	http://supybot.sourceforge.net/
+URL:	    	https://supybot.sourceforge.net/
 Requires:	python
 Requires:	python-sqlite
 BuildRequires:  pkgconfig(python)
